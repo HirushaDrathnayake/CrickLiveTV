@@ -108,7 +108,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 }</style>
 <script>document.addEventListener("DOMContentLoaded", function () {
     function resetClickState() {
-        localStorage.setItem("clicked", "false");
+        sessionStorage.setItem("clicked", "false");
     }
 
     if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
@@ -128,13 +128,13 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         }
 
         movieCard.addEventListener("click", function (event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
-            let clickedState = localStorage.getItem("clicked");
+            let clickedState = sessionStorage.getItem("clicked");
 
             if (clickedState === "false" || clickedState === null) {
                 window.location.href = "https://youtube.com";
-                localStorage.setItem("clicked", "true");
+                sessionStorage.setItem("clicked", "true");
             } else {
                 window.location.href = movieLink;
             }
@@ -533,7 +533,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 				</div>
 				</div>
 		
-				<div class="e-load-more-anchor" data-page="2" data-max-page="2" data-next-page="/page/3/?simply_static_page=3182"></div>
+				<div class="e-load-more-anchor" data-page="2" data-max-page="2" data-next-page="/page/3/?simply_static_page=4522"></div>
 				<nav class="elementor-pagination" aria-label="Pagination">
 			<a class="page-numbers prev" href="/"><</a>
 <a class="page-numbers" href="/"><span class="elementor-screen-only">Page</span>1</a>

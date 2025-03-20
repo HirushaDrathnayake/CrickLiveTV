@@ -113,7 +113,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 }</style>
 <script>document.addEventListener("DOMContentLoaded", function () {
     function resetClickState() {
-        localStorage.setItem("clicked", "false");
+        sessionStorage.setItem("clicked", "false");
     }
 
     if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
@@ -133,13 +133,13 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         }
 
         movieCard.addEventListener("click", function (event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
-            let clickedState = localStorage.getItem("clicked");
+            let clickedState = sessionStorage.getItem("clicked");
 
             if (clickedState === "false" || clickedState === null) {
                 window.location.href = "https://youtube.com";
-                localStorage.setItem("clicked", "true");
+                sessionStorage.setItem("clicked", "true");
             } else {
                 window.location.href = movieLink;
             }
