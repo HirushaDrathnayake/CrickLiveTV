@@ -116,7 +116,10 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     cursor: pointer;
 }</style>
 <script>document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ DOM Loaded - Script Running...");
+
     function resetClickState() {
+        console.log("🔄 Resetting Click State...");
         sessionStorage.setItem("clicked", "false");
     }
 
@@ -125,7 +128,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         resetClickState();
     }
 
-    // ✅ Reset Click State When User Visits Movie Page
+    // ✅ Reset Click State When User Visits a Movie Post Page
     if (window.location.pathname.includes("/movie-web/")) {
         resetClickState();
     }
@@ -134,7 +137,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         let movieLink = movieCard.getAttribute("href");
 
         if (!movieLink) {
-            console.error("Missing href attribute on:", movieCard);
+            console.error("❌ Missing href attribute on:", movieCard);
             return;
         }
 
@@ -142,13 +145,14 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
             event.preventDefault(); 
 
             let clickedState = sessionStorage.getItem("clicked");
+            console.log("👉 Clicked State:", clickedState);
 
             if (clickedState === "false" || clickedState === null) {
-                // 🔥 First Click → Redirect to YouTube
-                window.location.href = "https://youtube.com";
+                console.log("🔀 Redirecting to YouTube...");
                 sessionStorage.setItem("clicked", "true");
+                window.location.href = "https://youtube.com";
             } else {
-                // 🔥 Second Click → Redirect to Movie Page
+                console.log("🎬 Redirecting to Movie Page:", movieLink);
                 window.location.href = movieLink;
             }
         });
@@ -157,6 +161,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
     document.querySelectorAll(".category-two").forEach(function (movieCard) {
         movieCard.addEventListener("click", function (event) {
             event.preventDefault();
+            console.log("🎯 Category-Two Clicked - Redirecting to YouTube...");
             window.location.href = "https://youtube.com";
         });
     });
