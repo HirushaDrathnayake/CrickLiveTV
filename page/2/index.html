@@ -52,7 +52,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 <link rel="stylesheet" id="widget-loop-common-css" href="/wp-content/plugins/pro-elements/assets/css/widget-loop-common.min.css?ver=3.27.4" media="all">
 <link rel="stylesheet" id="widget-loop-grid-css" href="/wp-content/plugins/pro-elements/assets/css/widget-loop-grid.min.css?ver=3.27.4" media="all">
 <link rel="stylesheet" id="widget-image-css" href="/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.27.7" media="all">
-<link rel="stylesheet" id="elementor-post-622-css" href="/wp-content/uploads/elementor/css/post-622.css?ver=1742473551" media="all">
+<link rel="stylesheet" id="elementor-post-622-css" href="/wp-content/uploads/elementor/css/post-622.css?ver=1742474160" media="all">
 <link rel="stylesheet" id="eael-general-css" href="/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.min.css?ver=6.1.5" media="all">
 <link rel="stylesheet" id="google-fonts-1-css" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap&#038;ver=6.7.2" media="all">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -109,18 +109,19 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 }</style>
 <script>document.addEventListener("DOMContentLoaded", function () {
     function resetClickState() {
-        sessionStorage.setItem("clicked", "false");
+        localStorage.setItem("clicked", "false");
+        localStorage.setItem("timestamp", Date.now());
     }
 
-    // Reset clicked state when user visits home page
     if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
         resetClickState();
     }
 
-    // Reset clicked state when visiting movie post page
-    if (window.location.pathname.includes("/movie-web/")) {
-        resetClickState();
-    }
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            resetClickState();
+        }
+    });
 
     document.querySelectorAll(".category-one").forEach(function (movieCard) {
         let movieLink = movieCard.getAttribute("href");
@@ -133,11 +134,13 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         movieCard.addEventListener("click", function (event) {
             event.preventDefault();
 
-            let clickedState = sessionStorage.getItem("clicked");
+            let clickedState = localStorage.getItem("clicked");
+            let lastClickTime = localStorage.getItem("timestamp");
 
-            if (clickedState === "false" || clickedState === null) {
-                sessionStorage.setItem("clicked", "true");
+            if (clickedState === "false" || clickedState === null || (lastClickTime && (Date.now() - lastClickTime > 5000))) {
                 window.location.href = "https://youtube.com";
+                localStorage.setItem("clicked", "true");
+                localStorage.setItem("timestamp", Date.now());
             } else {
                 window.location.href = movieLink;
             }
@@ -149,13 +152,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
             event.preventDefault();
             window.location.href = "https://youtube.com";
         });
-    });
-
-    // 🛠 Fix: Reset "clicked" when user clicks back from movie post!
-    window.addEventListener("pageshow", function (event) {
-        if (event.persisted) {
-            resetClickState();
-        }
     });
 });</script>			            <style>div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
 						font-size: 0px !important;
@@ -428,7 +424,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-226f6bb elementor-widget elementor-widget-heading" data-id="226f6bb" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h2 class="elementor-heading-title elementor-size-default">Testing 3
+					<h2 class="elementor-heading-title elementor-size-default">Testing 4
 </h2>				</div>
 				</div>
 					</div>
@@ -552,7 +548,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 				</div>
 				</div>
 		
-				<div class="e-load-more-anchor" data-page="2" data-max-page="2" data-next-page="/page/3/?simply_static_page=11222"></div>
+				<div class="e-load-more-anchor" data-page="2" data-max-page="2" data-next-page="/page/3/?simply_static_page=12562"></div>
 				<nav class="elementor-pagination" aria-label="Pagination">
 			<a class="page-numbers prev" href="/"><</a>
 <a class="page-numbers" href="/"><span class="elementor-screen-only">Page</span>1</a>
